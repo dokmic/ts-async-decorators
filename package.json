@@ -1,0 +1,25 @@
+{
+  "name": "ts-async-decorators",
+  "version": "0.1.2",
+  "description": "TypeScript Async Method Decorators",
+  "keywords": [
+    "typescript",
+    "decorator",
+    "async",
+    "promise",
+    "debounce",
+    "retry",
+    "semaphore",
+    "throttle",
+    "timeout"
+  ],
+  "author": "Michael Dokolin <m@dokol.in>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dokmic/ts-async-decorators"
+  },
+  "bugs": {
+    "url": "https://github.com/dokmic/ts-async-decorators/issues"
+  }
+}

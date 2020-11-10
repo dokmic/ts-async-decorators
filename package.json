@@ -21,5 +21,11 @@
   },
   "bugs": {
     "url": "https://github.com/dokmic/ts-async-decorators/issues"
+  },
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "typescript": "^4.1"
   }
 }

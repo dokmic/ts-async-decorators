@@ -25,7 +25,16 @@
   "files": [
     "lib"
   ],
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
   "devDependencies": {
+    "rollup": "^2.36",
+    "rollup-plugin-dts": "^2.0",
+    "rollup-plugin-typescript2": "^0.29",
     "typescript": "^4.1"
   }
 }

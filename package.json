@@ -30,8 +30,8 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "coverage": "codecov",
     "lint": "eslint --ext ts src/",
+    "prepare": "$npm_execpath run build",
     "test": "jest --coverage"
   },
   "dependencies": {
@@ -42,7 +42,6 @@
     "@types/jest": "^26.0",
     "@typescript-eslint/eslint-plugin": "^4.12",
     "@typescript-eslint/parser": "^4.12",
-    "codecov": "^3.8",
     "eslint": "^7.17",
     "eslint-config-airbnb": "^18.2",
     "eslint-config-prettier": "^7.1",

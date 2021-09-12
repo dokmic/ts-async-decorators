@@ -1,7 +1,9 @@
 # TypeScript Async Method Decorators
 [![NPM](https://img.shields.io/npm/v/ts-async-decorators.svg)](https://www.npmjs.com/package/ts-async-decorators)
-[![Build Status](https://travis-ci.com/dokmic/ts-async-decorators.svg?branch=master)](https://travis-ci.com/dokmic/ts-async-decorators)
+[![Downloads](https://img.shields.io/npm/dm/ts-async-decorators)](https://www.npmjs.com/package/ts-async-decorators)
+[![Tests](https://github.com/dokmic/ts-async-decorators/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/dokmic/ts-async-decorators/actions/workflows/tests.yaml)
 [![Code Coverage](https://codecov.io/gh/dokmic/ts-async-decorators/badge.svg?branch=master)](https://codecov.io/gh/dokmic/ts-async-decorators?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This package provides a collection of asynchronous method decorators.
 

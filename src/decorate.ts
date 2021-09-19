@@ -24,6 +24,7 @@ interface Parameters<T, U extends unknown[] = unknown[]> {
 }
 
 type Handler<T> = (parameters: Parameters<T>) => unknown;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Method<T> = (this: T, ...args: any[]) => any;
 
 /**
@@ -31,7 +32,7 @@ type Method<T> = (this: T, ...args: any[]) => any;
  */
 export type Decorator<T> = <U extends T>(
   target: U,
-  key: keyof any,
+  key: keyof never,
   descriptor: TypedPropertyDescriptor<Method<T>>,
 ) => TypedPropertyDescriptor<Method<T>>;
 

@@ -27,7 +27,7 @@ export function debounce<T>({ immediate = false, timeout }: Parameters<T>): Deco
   let action: (() => unknown) | undefined;
   let handle: NodeJS.Timeout | undefined;
   let trigger: (() => void) | undefined;
-  let wrapper: PCancelable<any> | undefined;
+  let wrapper: PCancelable<unknown> | undefined;
 
   const reset = () => {
     action = undefined;

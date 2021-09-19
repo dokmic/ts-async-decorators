@@ -40,17 +40,17 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0",
-    "@typescript-eslint/eslint-plugin": "^4.12",
-    "@typescript-eslint/parser": "^4.12",
-    "eslint": "^7.17",
+    "@typescript-eslint/eslint-plugin": "^5.1",
+    "@typescript-eslint/parser": "^5.1",
+    "eslint": "^7.32",
     "eslint-config-airbnb": "^18.2",
-    "eslint-config-prettier": "^7.1",
-    "eslint-import-resolver-typescript": "^2.3",
-    "eslint-plugin-import": "^2.22",
-    "eslint-plugin-prettier": "^3.3",
+    "eslint-config-prettier": "^8.3",
+    "eslint-import-resolver-typescript": "^2.5",
+    "eslint-plugin-import": "^2.25",
+    "eslint-plugin-prettier": "^4.0",
     "jest": "^26.6",
     "jest-extended": "^0.11",
-    "prettier": "^2.2",
+    "prettier": "^2.4",
     "rollup": "^2.36",
     "rollup-plugin-dts": "^2.0",
     "rollup-plugin-typescript2": "^0.29",
@@ -70,32 +70,19 @@
         ],
         "extends": [
           "plugin:@typescript-eslint/eslint-recommended",
-          "plugin:@typescript-eslint/recommended",
-          "prettier/@typescript-eslint"
+          "plugin:@typescript-eslint/recommended"
         ],
         "parser": "@typescript-eslint/parser",
         "plugins": [
           "@typescript-eslint"
-        ],
-        "rules": {
-          "@typescript-eslint/no-explicit-any": "off"
-        }
+        ]
       },
       {
         "files": [
           "*.spec.ts"
         ],
         "rules": {
-          "class-methods-use-this": "off",
-          "import/no-extraneous-dependencies": "off"
-        }
-      },
-      {
-        "files": [
-          "*.d.ts"
-        ],
-        "rules": {
-          "import/no-extraneous-dependencies": "off"
+          "class-methods-use-this": "off"
         }
       }
     ],
@@ -111,6 +98,15 @@
           "ts": "never"
         }
       ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.spec.ts",
+            "**/*.d.ts"
+          ]
+        }
+      ],
       "import/prefer-default-export": "off",
       "prettier/prettier": [
         "warn",
@@ -124,14 +120,7 @@
     },
     "settings": {
       "import/resolver": {
-        "eslint-import-resolver-typescript": true,
-        "node": {
-          "extensions": [
-            ".js",
-            ".ts",
-            ".d.ts"
-          ]
-        }
+        "eslint-import-resolver-typescript": true
       }
     }
   },

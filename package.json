@@ -39,7 +39,7 @@
     "p-cancelable": "^2.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0",
+    "@types/jest": "^27.0",
     "@typescript-eslint/eslint-plugin": "^5.1",
     "@typescript-eslint/parser": "^5.1",
     "eslint": "^7.32",
@@ -48,13 +48,13 @@
     "eslint-import-resolver-typescript": "^2.5",
     "eslint-plugin-import": "^2.25",
     "eslint-plugin-prettier": "^4.0",
-    "jest": "^26.6",
-    "jest-extended": "^0.11",
+    "jest": "^27.3",
+    "jest-extended": "^1.1",
     "prettier": "^2.4",
     "rollup": "^2.36",
     "rollup-plugin-dts": "^2.0",
     "rollup-plugin-typescript2": "^0.29",
-    "ts-jest": "^26.4",
+    "ts-jest": "^27.0",
     "typescript": "^4.1"
   },
   "eslintConfig": {
@@ -127,7 +127,7 @@
   "jest": {
     "preset": "ts-jest",
     "setupFilesAfterEnv": [
-      "jest-extended"
+      "jest-extended/all"
     ],
     "testEnvironment": "node"
   }

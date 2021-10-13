@@ -14,7 +14,8 @@ describe('semaphore', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
-    jest.useFakeTimers();
+    // @see https://github.com/facebook/jest/issues/10221
+    jest.useFakeTimers('legacy');
 
     instance = new TestClass();
   });

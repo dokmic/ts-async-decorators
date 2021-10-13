@@ -21,7 +21,8 @@ describe('before', () => {
   let instance: TestClass;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    // @see https://github.com/facebook/jest/issues/10221
+    jest.useFakeTimers('legacy');
     jest.clearAllMocks();
 
     instance = new TestClass();

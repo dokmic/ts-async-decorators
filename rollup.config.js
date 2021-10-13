@@ -1,11 +1,10 @@
+import externals from 'rollup-plugin-node-externals';
 import dts from 'rollup-plugin-dts';
 import typescript from 'rollup-plugin-typescript2';
-import { dependencies } from './package.json';
 
 export default [
   {
     input: 'src/index.ts',
-    external: Object.keys(dependencies),
     output: [
       {
         dir: 'lib',
@@ -22,7 +21,7 @@ export default [
         sourcemapExcludeSources: true,
       },
     ],
-    plugins: [typescript({ clean: true })],
+    plugins: [externals({ deps: true }), typescript({ clean: true })],
   },
   {
     input: 'src/index.ts',

@@ -1,4 +1,5 @@
 import PCancelable from 'p-cancelable';
+import { isCancelable } from './cancelable';
 import { Decorator, decorate } from './decorate';
 
 /**
@@ -30,10 +31,10 @@ export function after<T>({ action, wait = false }: Parameters<T>): Decorator<T> 
         let actionPromise: unknown;
 
         onCancel(() => {
-          if (actionPromise instanceof PCancelable) {
+          if (isCancelable(actionPromise)) {
             actionPromise.cancel();
           }
-          if (promise instanceof PCancelable) {
+          if (isCancelable(promise)) {
             promise.cancel();
           }
         });

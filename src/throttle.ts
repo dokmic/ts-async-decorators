@@ -1,4 +1,5 @@
 import PCancelable from 'p-cancelable';
+import { isCancelable } from './cancelable';
 import { Decorator, decorate } from './decorate';
 
 /**
@@ -64,7 +65,7 @@ export function throttle<T>({ immediate = false, timeout }: Parameters<T>): Deco
         };
 
         onCancel(() => {
-          if (promise instanceof PCancelable) {
+          if (isCancelable(promise)) {
             promise.cancel();
           }
 

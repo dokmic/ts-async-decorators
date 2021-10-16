@@ -1,6 +1,7 @@
 import PCancelable from 'p-cancelable';
 import { Semaphore } from 'await-semaphore';
 import { Decorator, decorate } from './decorate';
+import { isCancelable } from './cancelable';
 
 /**
  * The `semaphore` decorator parameters.
@@ -24,7 +25,7 @@ export function semaphore<T>({ limit }: Parameters): Decorator<T> {
     ({ callback }) =>
       new PCancelable((resolve, reject, onCancel) => {
         let promise: unknown;
-        onCancel(() => promise instanceof PCancelable && promise.cancel());
+        onCancel(() => isCancelable(promise) && promise.cancel());
 
         // eslint-disable-next-line no-return-assign
         handle.use(async () => (promise = callback())).then(resolve, reject);

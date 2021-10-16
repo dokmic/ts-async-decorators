@@ -1,4 +1,5 @@
 import PCancelable from 'p-cancelable';
+import { isCancelable } from './cancelable';
 import { Decorator, decorate } from './decorate';
 
 /**
@@ -26,7 +27,7 @@ export function timeout<T>({ timeout: ms, reason = 'Operation timeout.' }: Param
   return decorate(({ callback, instance }) => {
     const promise = callback();
     setTimeout(
-      () => promise instanceof PCancelable && promise.cancel(reason),
+      () => isCancelable(promise) && promise.cancel(reason),
       typeof ms === 'function' ? ms.call(instance, instance) : ms,
     );
 

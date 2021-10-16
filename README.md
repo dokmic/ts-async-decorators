@@ -169,7 +169,17 @@ import { timeout } from 'ts-async-decorators';
 
 class SomeClass {
   @timeout({ timeout: 10000, reason = 'Fetch timeout.' })
-  fetch() {
+  fetchOne() {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    const promise = fetch('http://example.com', { signal });
+
+    return Object.assign(promise, { cancel: () => controller.abort() });
+  }
+
+  @timeout({ timeout: 10000, reason = 'Fetch timeout.' })
+  fetchTwo() {
     return new PCancelable((resolve, reject, onCancel) => {
       const controller = new AbortController();
       const { signal } = controller;

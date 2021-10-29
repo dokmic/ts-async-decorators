@@ -1,14 +1,17 @@
 {
   "name": "ts-async-decorators",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "TypeScript Async Method Decorators",
   "keywords": [
     "typescript",
     "decorator",
     "async",
     "promise",
+    "abortable",
+    "cancelable",
     "debounce",
     "retry",
+    "mutex",
     "semaphore",
     "throttle",
     "timeout"

@@ -1,15 +1,16 @@
-# TypeScript Async Method Decorators
+# TypeScript Async Method Decorators 🧰
 [![NPM](https://img.shields.io/npm/v/ts-async-decorators.svg)](https://www.npmjs.com/package/ts-async-decorators)
 [![Downloads](https://img.shields.io/npm/dm/ts-async-decorators)](https://www.npmjs.com/package/ts-async-decorators)
 [![Tests](https://github.com/dokmic/ts-async-decorators/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/dokmic/ts-async-decorators/actions/workflows/tests.yaml)
 [![Code Coverage](https://codecov.io/gh/dokmic/ts-async-decorators/badge.svg?branch=master)](https://codecov.io/gh/dokmic/ts-async-decorators?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This package provides a collection of asynchronous method decorators.
+This package provides a collection of asynchronous method decorators with an elegant declarative API.
 
 ## What's Inside?
 - `after` - post action.
 - `before` - pre action.
+- `cancelable` - canceling execution.
 - `debounce` - delaying execution by timeout since the last call.
 - `retry` - retrying on fail.
 - `semaphore` - limiting the number of simultaneous calls.
@@ -63,6 +64,54 @@ class SomeClass {
   }
 }
 ```
+
+### `cancelable`
+Wraps a call inside a cancelable promise.
+
+```typescript
+cancelable({ onCancel = undefined }): Decorator
+```
+- `onCancel: (instance) => void` - The action to call on canceling the returned promise.
+
+There is also an option to set the cancelation callback from within the decorated method.
+
+```typescript
+onCancel(callback): void
+```
+- `callback: (instance) => void` - The callback that will be called on promise cancelation.
+
+#### Example using parameters
+```typescript
+import { cancelable } from 'ts-async-decorators';
+
+class SomeClass {
+  @cancelable({ onCancel() { this.stop(); } })
+  start() {
+    // ...
+  }
+
+  stop() {
+    // ...
+  }
+}
+```
+
+#### Example using `onCancel`
+```typescript
+import { cancelable, onCancel } from 'ts-async-decorators';
+
+class SomeClass {
+  @cancelable()
+  fetch() {
+    const controller = new AbortController();
+    const { signal } = controller;
+    onCancel(() => controller.abort());
+
+    return fetch('http://example.com', { signal });
+  }
+}
+```
+
 
 ### `debounce`
 Delays execution by timeout since the last call.
@@ -164,29 +213,20 @@ timeout({ timeout, reason = 'Operation timeout.' }): Decorator
 
 #### Example
 ```typescript
-import PCancelable from 'p-cancelable';
-import { timeout } from 'ts-async-decorators';
+import { cancelable, timeout, onCancel } from 'ts-async-decorators';
 
 class SomeClass {
   @timeout({ timeout: 10000, reason = 'Fetch timeout.' })
-  fetchOne() {
+  @cancelable()
+  fetch() {
     const controller = new AbortController();
     const { signal } = controller;
+    onCancel(() => controller.abort());
 
-    const promise = fetch('http://example.com', { signal });
-
-    return Object.assign(promise, { cancel: () => controller.abort() });
-  }
-
-  @timeout({ timeout: 10000, reason = 'Fetch timeout.' })
-  fetchTwo() {
-    return new PCancelable((resolve, reject, onCancel) => {
-      const controller = new AbortController();
-      const { signal } = controller;
-
-      fetch('http://example.com', { signal }).then(resolve, reject);
-      onCancel(() => controller.abort());
-    });
+    return fetch('http://example.com', { signal });
   }
 }
 ```
+
+## Examples
+- [Bluetooth Low-Energy Peripheral Device](https://github.com/dokmic/bluetooth-device).
